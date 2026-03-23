@@ -10,11 +10,11 @@ y = pd.Series(data.target)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
 
-dt = DecisionTreeClassifier(criterion="entropy", random_state=42)
-dt.fit(X_train, y_train)
+decision_tree_model = DecisionTreeClassifier(criterion="entropy", random_state=42)
+decision_tree_model.fit(X_train, y_train)
 
-y_train_predict = dt.predict(X_train)
-y_test_predict = dt.predict(X_test)
+y_train_predict = decision_tree_model.predict(X_train)
+y_test_predict = decision_tree_model.predict(X_test)
 
 train_accuracy = accuracy_score(y_train, y_train_predict)
 test_accuracy = accuracy_score(y_test, y_test_predict)

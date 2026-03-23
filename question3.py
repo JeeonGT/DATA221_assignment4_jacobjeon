@@ -10,23 +10,23 @@ y = pd.Series(data.target)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
 
-dt_constrained = DecisionTreeClassifier(criterion="entropy",max_depth=3,random_state=42)
-dt_constrained.fit(X_train, y_train)
+decision_tree_model_constrained = DecisionTreeClassifier(criterion="entropy",max_depth=3,random_state=42)
+decision_tree_model_constrained.fit(X_train, y_train)
 
-y_train_predict = dt_constrained.predict(X_train)
-y_test_predict = dt_constrained.predict(X_test)
+y_train_predict = decision_tree_model_constrained.predict(X_train)
+y_test_predict = decision_tree_model_constrained.predict(X_test)
 
-train_acc_constrained = dt_constrained.score(X_train, y_train)
-test_acc_constrained = dt_constrained.score(X_test, y_test)
+train_accuracy_constrained = decision_tree_model_constrained.score(X_train, y_train)
+test_accuracy_constrained = decision_tree_model_constrained.score(X_test, y_test)
 
-feature_importance = pd.Series(dt_constrained.feature_importances_,index=X.columns)
+feature_importance = pd.Series(decision_tree_model_constrained.feature_importances_,index=X.columns)
 top5_important_features = feature_importance.sort_values(ascending=False).head(5)
 
 print("Top 5 Important Features: ")
 print(top5_important_features)
 
-print("Training Accuracy Constrained:", train_acc_constrained)
-print("Test Accuracy Constrained:", test_acc_constrained)
+print("Training Accuracy Constrained:", train_accuracy_constrained)
+print("Test Accuracy Constrained:", test_accuracy_constrained)
 
 #controlling model complexity like max depth allows us to "simplify" the model to prevent
 #the model from memorizing every noise data, preventing overfitting. The training accuracy might become
